@@ -11,6 +11,7 @@ the function below should be the only one in this file.
 */
 
 #include "split.h"
+#include <cstddef>
 
 /* Add a prototype for a helper function here if you need */
 
@@ -19,10 +20,10 @@ void split(Node*& in, Node*& odds, Node*& evens)
   /* Add code here */
 // WRITE YOUR CODE HERE
 
-  // base/terminating case
-  if (in == nullptr) { // stop when the list is empty (end)
-    return; 
-  } 
+  // check if there is even a Node in "in"
+  if (in == nullptr){
+    return;
+  }
 
   Node* nextnode = in->next;
   
@@ -34,6 +35,12 @@ void split(Node*& in, Node*& odds, Node*& evens)
     in->next = odds;
     odds = in;
   }
+
+  // check if we have reached the end of the "in" list
+  if (nextnode == nullptr){
+    in = NULL;
+    return; 
+  } 
 
   // recursive call
   split(nextnode, odds, evens);
